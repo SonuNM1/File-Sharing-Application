@@ -1,18 +1,17 @@
+import express from 'express';
+import cors from 'cors';
+import router from './routes/routes.js';
+import DBConnection from './database/db.js';
 
-import express from "express" ; 
-import router from "./routes/routes";
-import cors from "cors" ; 
-import dbConnection from "./database/db";
+const app = express();
 
-const app = express() ; 
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use('/', router);
 
-const PORT = 8000 ; 
+const PORT = process.env.PORT || 8000;
 
-dbConnection() ; 
+DBConnection();
 
-app.use(cors()) ; 
-app.use('/', router) ; 
-
-app.listen(PORT, ()=>{
-    console.log(`Server running on http://localhost:${PORT}`)
-})
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
