@@ -10,6 +10,10 @@
   display: flex;
 }
 
+#btn-click:hover{
+  cursor: pointer;
+}
+
 .img {
   width: 30%;
 }
